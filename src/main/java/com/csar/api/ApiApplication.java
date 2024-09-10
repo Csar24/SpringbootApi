@@ -2,6 +2,7 @@ package com.csar.api;
 
 import com.csar.api.model.DatosSeries;
 import com.csar.api.model.DatosTemporadas;
+import com.csar.api.principal.EjemploStream;
 import com.csar.api.principal.Principal;
 import com.csar.api.services.ConsumoAPI;
 import com.csar.api.services.ConvierteDatos;
@@ -53,8 +54,11 @@ public class ApiApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Principal principal = new Principal();
-		principal.mostrarMenu();
+//		Principal principal = new Principal();
+//		principal.mostrarMenu();
+
+		EjemploStream nombre = new EjemploStream();
+		nombre.ejemloString();
 
 	}
 }
