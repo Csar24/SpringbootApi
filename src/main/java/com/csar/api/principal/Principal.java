@@ -7,6 +7,10 @@ import com.csar.api.model.Episodios;
 import com.csar.api.services.ConsumoAPI;
 import com.csar.api.services.ConvierteDatos;
 
+import javax.swing.text.DateFormatter;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -72,6 +76,28 @@ public class Principal {
                         .map(d-> new Episodios(t.numero(),d)))
                 .collect(Collectors.toList());
         episodios.forEach(System.out::println);
+
+        //Busqueda de Episodios Apartir de un anio
+
+        System.out.println("Porfavor indicar el año a partir del cual quiere que se muestre");
+
+        var  fecha = scanner.nextInt();
+        scanner.nextLine();
+
+        LocalDate fechaBusqueda = LocalDate.of(fecha,1,1);
+
+        DateTimeFormatter dtf=DateTimeFormatter.ofPattern("dd/MM/yyy");
+        episodios.stream()
+                .filter(e ->e.getFechaLanzamiento()!= null && e.getFechaLanzamiento().isAfter(fechaBusqueda))
+                .forEach(e->{
+                    System.out.println(
+                            "Temporada"+e.getTemporad()+
+                                    "Episodios" +e.getTitulo()+
+                                    "Fecha de Lanzamiento"+e.getFechaLanzamiento().format(dtf)
+
+                    );
+                });
+
 
     }
 
