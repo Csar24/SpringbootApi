@@ -3,6 +3,7 @@ package com.csar.api.principal;
 import com.csar.api.model.DatosEpisodios;
 import com.csar.api.model.DatosSeries;
 import com.csar.api.model.DatosTemporadas;
+import com.csar.api.model.Episodios;
 import com.csar.api.services.ConsumoAPI;
 import com.csar.api.services.ConvierteDatos;
 
@@ -64,6 +65,13 @@ public class Principal {
                 .limit(5)
                 .forEach(System.out::println);
 
+
+        //Convirtiendo los datos  a una lista de tipo de Episodios
+        List<Episodios> episodios = temporadas.stream()
+                .flatMap(t->t.episodios().stream()
+                        .map(d-> new Episodios(t.numero(),d)))
+                .collect(Collectors.toList());
+        episodios.forEach(System.out::println);
 
     }
 
