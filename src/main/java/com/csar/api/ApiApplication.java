@@ -54,11 +54,11 @@ public class ApiApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-//		Principal principal = new Principal();
-//		principal.mostrarMenu();
+		Principal principal = new Principal();
+		principal.mostrarMenu();
 
-		EjemploStream nombre = new EjemploStream();
-		nombre.ejemloString();
+//		EjemploStream nombre = new EjemploStream();
+//		nombre.ejemloString();
 
 	}
 }

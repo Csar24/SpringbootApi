@@ -7,8 +7,10 @@ import com.csar.api.services.ConsumoAPI;
 import com.csar.api.services.ConvierteDatos;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Principal {
     private Scanner scanner = new Scanner(System.in);
@@ -49,6 +51,19 @@ public class Principal {
 //        }
 // Expresion Lambda
         temporadas.forEach(t -> t.episodios().forEach(e-> System.out.println(e.tiutlo())) );
+
+        //convertir informacion  a lista de tipo datos de episodios
+        List<DatosEpisodios> datosepisodios = temporadas.stream()
+                .flatMap(t->t.episodios().stream())
+                .collect(Collectors.toList());
+
+        System.out.println("TOP-5");
+        datosepisodios.stream()
+                .filter(e->!e.evaluacion().equalsIgnoreCase("N/A"))
+                .sorted(Comparator.comparing(DatosEpisodios::evaluacion).reversed())
+                .limit(5)
+                .forEach(System.out::println);
+
 
     }
 
